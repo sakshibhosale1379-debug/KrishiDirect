@@ -43,7 +43,7 @@ const Overview = ({ products, orders, currentUser }) => {
   return (
     <div>
       <h2 style={{ fontSize: '1.75rem', marginBottom: '0.25rem', color: '#0f172a' }}>
-        Welcome back, {currentUser.name || 'Farmer'}! 👋
+        Welcome back, {currentUser.name || 'Farmer'}! 
       </h2>
       <p style={{ color: '#64748b', marginBottom: '2rem' }}>
         {currentUser.farm || 'BeeHappy Farms'} · {currentUser.location || 'Nashik, Maharashtra'}
@@ -83,7 +83,7 @@ const Overview = ({ products, orders, currentUser }) => {
         </div>
 
         <div style={{ ...card, background: 'linear-gradient(135deg,#1e293b,#0f172a)', color: 'white' }}>
-          <h3 style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>✨ AI Demand Forecast</h3>
+          <h3 style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>AI Demand Forecast</h3>
           <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1.25rem' }}>Real-time predictions for next 7 days in your regional market.</p>
           {[
             { name: 'Raw Organic Honey', change: '+45%', note: 'Surge in regional health food searches' },
@@ -475,7 +475,7 @@ const DemandInsights = () => {
               </div>
             </div>
             <div style={{ background: '#f0fdf4', padding: '0.65rem 0.85rem', borderRadius: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.85rem', color: '#065f46' }}>✅ Recommended listing batch</span>
+              <span style={{ fontSize: '0.85rem', color: '#065f46' }}>Recommended listing batch</span>
               <span style={{ fontWeight: 700, color: '#10b981' }}>{item.recommended} units</span>
             </div>
           </div>
@@ -515,7 +515,7 @@ const PriceInsights = ({ products, onUpdatePrice }) => {
       
       {toast && (
         <div style={{ background: '#d1fae5', color: '#065f46', padding: '0.75rem 1rem', borderRadius: '0.5rem', marginBottom: '1rem', fontWeight: 700 }}>
-          ✅ {toast}
+          {toast}
         </div>
       )}
 
@@ -740,7 +740,7 @@ const Profile = ({ currentUser, onUpdateProfile, onLogout }) => {
         {/* Left summary card */}
         <div style={card}>
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <div style={{ fontSize: '5rem' }}>🧑‍🌾</div>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1rem' }}><img src={currentUser.avatar} alt='avatar' style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
             <h3 style={{ fontWeight: 700, fontSize: '1.25rem', color: '#0f172a' }}>
               {form.name || 'Farmer Ravi'}
             </h3>
@@ -751,11 +751,11 @@ const Profile = ({ currentUser, onUpdateProfile, onLogout }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {[
               ['📧 Email',    form.email    || '—'],
-              ['📍 Farm Location', form.location || '—'],
-              ['📞 Contact',    form.phone    || '—'],
+              ['Farm Location', form.location || '—'],
+              ['Contact',    form.phone    || '—'],
               ['📅 Member Since', currentUser.joined || 'Jan 2024'],
               ['🌾 Account Type', 'Direct Producer / Verified Farmer'],
-              ['⭐ Farmer Rating', '4.9 / 5.0 (Trusted Producer)'],
+              ['Farmer Rating', '4.9 / 5.0 (Trusted Producer)'],
             ].map(([k, v]) => (
               <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.65rem', background: '#f8fafc', borderRadius: '0.5rem' }}>
                 <span style={{ fontSize: '0.85rem', color: '#64748b' }}>{k}</span>
@@ -771,7 +771,7 @@ const Profile = ({ currentUser, onUpdateProfile, onLogout }) => {
             <h3 style={{ marginBottom: '1rem', color: '#0f172a' }}>Edit Farm Details</h3>
             {saved && (
               <div style={{ background: '#d1fae5', color: '#065f46', padding: '0.65rem 0.85rem', borderRadius: '0.5rem', marginBottom: '1rem', fontWeight: 700, fontSize: '0.88rem' }}>
-                ✅ Profile details saved and updated everywhere!
+                Profile details saved and updated everywhere!
               </div>
             )}
             {[

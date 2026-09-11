@@ -157,7 +157,7 @@ const LogisticsDashboard = () => {
           </div>
 
           <div style={{ background: '#f0fdf4', padding: '0.75rem', borderRadius: '0.5rem', fontSize: '0.8rem', color: '#065f46', textAlign: 'center', fontWeight: 600 }}>
-            ⚡ Real-time synchronization active across Farmer and Consumer portals
+            Real-time synchronization active across Farmer and Consumer portals
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@ const LogisticsDashboard = () => {
                         onClick={() => handleAdvance(o.id, 'Out for Delivery')}
                         style={{ background: '#8b5cf6', color: 'white', border: 'none', padding: '0.35rem 0.85rem', borderRadius: '0.4rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: '0.8rem' }}
                       >
-                        🚚 Mark Out for Delivery
+                        Mark Out for Delivery
                       </button>
                     ) : o.status === 'Out for Delivery' ? (
                       <button

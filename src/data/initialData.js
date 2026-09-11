@@ -6,7 +6,7 @@ export const INITIAL_USER = {
   location: 'Nashik, Maharashtra',
   phone: '9876543210',
   address: 'Plot 14, Agri Tech Park, Nashik',
-  avatar: '🧑‍🌾',
+  avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=200',
   joined: 'Jan 2024'
 };
 
@@ -23,7 +23,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Dairy & Honey',
     rating: 4.8,
     reviews: 124,
-    image: '🍯',
+    image: 'https://images.unsplash.com/photo-1587049352851-8d4e8e133505?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: true,
     harvest: '2026-09-05'
@@ -40,7 +40,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Fruits',
     rating: 4.9,
     reviews: 87,
-    image: '🍓',
+    image: 'https://images.unsplash.com/photo-1464965911861-74ce9de9ce7c?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: true,
     harvest: '2026-09-08'
@@ -57,7 +57,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Grains',
     rating: 4.7,
     reviews: 56,
-    image: '🍞',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=400',
     stock: 'Low Stock',
     recommended: false,
     harvest: '2026-09-09'
@@ -74,7 +74,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Others',
     rating: 4.6,
     reviews: 210,
-    image: '☕',
+    image: 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: false,
     harvest: '2026-08-20'
@@ -91,7 +91,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Vegetables',
     rating: 4.5,
     reviews: 43,
-    image: '🥬',
+    image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: true,
     harvest: '2026-09-09'
@@ -108,7 +108,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Dairy & Honey',
     rating: 4.9,
     reviews: 302,
-    image: '🥛',
+    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: false,
     harvest: '2026-09-10'
@@ -125,7 +125,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Fruits',
     rating: 5.0,
     reviews: 189,
-    image: '🥭',
+    image: 'https://images.unsplash.com/photo-1553279768-865429fd8156?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: true,
     harvest: '2026-09-06'
@@ -142,7 +142,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Grains',
     rating: 4.4,
     reviews: 67,
-    image: '🌾',
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=400',
     stock: 'In Stock',
     recommended: false,
     harvest: '2026-07-15'
@@ -159,7 +159,7 @@ export const INITIAL_PRODUCTS = [
     category: 'Others',
     rating: 4.8,
     reviews: 38,
-    image: '🕯️',
+    image: 'https://images.unsplash.com/photo-1602874801007-bd458cb6c507?auto=format&fit=crop&q=80&w=400',
     stock: 'Low Stock',
     recommended: false,
     harvest: '2026-08-28'

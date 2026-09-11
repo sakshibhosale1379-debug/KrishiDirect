@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ShoppingBag, Heart, Package, CreditCard, Star, Bell, User, LogOut,
-  Search, Menu, X, ShoppingCart, MapPin, Sparkles, CheckCircle2
+  Search, Menu, X, ShoppingCart, MapPin, Sparkles, CheckCircle2,
+  Clock, Zap, Trash2, RefreshCw, MessageSquare
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
@@ -47,7 +48,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
 
   const handleAdd = (p, q = 1) => {
     addToCart(p, q);
-    showToast(`🛒 ${p.name} (×${q}) added to cart!`);
+    showToast(`${p.name} (×${q}) added to cart!`);
     setSelected(null);
   };
 
@@ -68,7 +69,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
       {/* Header & Search */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
         <h2 style={{ fontSize: '1.75rem', color: '#0f172a', whiteSpace: 'nowrap' }}>
-          Welcome, {currentUser.name || 'Priya Sharma'}! 👋
+          Welcome, {currentUser.name || 'Priya Sharma'}! 
         </h2>
         <div style={{ flex: 1, position: 'relative', minWidth: '260px' }}>
           <Search size={18} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
@@ -84,7 +85,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
       <div style={{ background: 'linear-gradient(135deg,#0f172a,#1e3a5f)', borderRadius: '1rem', padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', color: 'white' }}>
         <Sparkles size={28} color="#10b981" />
         <div style={{ flex: 1 }}>
-          <div style={{ fontWeight: 800, marginBottom: '0.2rem' }}>✨ Direct From Verified Regional Farms</div>
+          <div style={{ fontWeight: 800, marginBottom: '0.2rem' }}>Direct From Verified Regional Farms</div>
           <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Eliminating middlemen markups — 85% of your payment goes directly to the hardworking producer.</div>
         </div>
       </div>
@@ -97,7 +98,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
             onClick={() => setCat(c)}
             style={{ padding: '0.5rem 1.15rem', borderRadius: '999px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: '0.85rem', whiteSpace: 'nowrap', background: cat === c ? '#10b981' : 'white', color: cat === c ? 'white' : '#475569', boxShadow: '0 1px 4px rgba(0,0,0,0.08)', transition: 'all 0.2s' }}
           >
-            {c === 'All' ? '🌐' : c === 'Vegetables' ? '🥦' : c === 'Fruits' ? '🍎' : c === 'Grains' ? '🌾' : c === 'Dairy & Honey' ? '🍯' : '✨'} {c}
+            {c}
           </button>
         ))}
       </div>
@@ -116,7 +117,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
             >
               {p.recommended && (
                 <div style={{ position: 'absolute', top: '0.65rem', left: '0.65rem', background: '#10b981', color: 'white', padding: '0.2rem 0.55rem', borderRadius: '999px', fontSize: '0.7rem', fontWeight: 800 }}>
-                  ✨ Top Harvest
+                  Top Harvest
                 </div>
               )}
               <button
@@ -124,10 +125,12 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
                 style={{ position: 'absolute', top: '0.65rem', right: '0.65rem', background: 'white', border: 'none', cursor: 'pointer', fontSize: '1.1rem', borderRadius: '50%', padding: '0.3rem', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }}
                 title={wished ? 'Remove from Wishlist' : 'Add to Wishlist'}
               >
-                {wished ? '❤️' : '🤍'}
+                <Heart size={18} fill={wished ? '#ef4444' : 'none'} color={wished ? '#ef4444' : '#64748b'} />
               </button>
 
-              <div style={{ fontSize: '3.75rem', textAlign: 'center', padding: '1rem 0' }}>{p.image || '🌿'}</div>
+              <div style={{ width: '100%', height: '180px', borderRadius: '0.75rem', overflow: 'hidden', marginBottom: '1rem' }}>
+                <img src={p.image} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
               
               <h3 style={{ fontWeight: 800, color: '#0f172a', fontSize: '1rem', marginBottom: '0.2rem' }}>{p.name}</h3>
               <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.35rem' }}>by {p.farmer || p.farm}</p>
@@ -135,7 +138,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.5rem' }}>
                 <MapPin size={12} color="#94a3b8" />
                 <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{p.location}</span>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginLeft: 'auto' }}>🕒 {p.freshness || '1-3 days'}</span>
+                <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginLeft: 'auto' }}>{p.freshness || '1-3 days'}</span>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', marginBottom: '0.75rem' }}>
@@ -174,7 +177,9 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
         >
           <div style={{ ...card, width: '100%', maxWidth: '480px', margin: 0 }} onClick={e => e.stopPropagation()}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-              <div style={{ fontSize: '4.5rem' }}>{selected.image || '🌿'}</div>
+              <div style={{ width: '120px', height: '120px', borderRadius: '1rem', overflow: 'hidden' }}>
+                <img src={selected.image} alt={selected.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
               <button onClick={() => setSelected(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.3rem', color: '#64748b' }}>✕</button>
             </div>
 
@@ -183,9 +188,9 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
 
             <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
               {[
-                ['🕒 Freshness', selected.freshness || '1-3 days'],
-                ['📦 Available', `${selected.qty} units`],
-                ['⭐ Rating', `${selected.rating}/5 (${selected.reviews} reviews)`]
+                ['Freshness', selected.freshness || '1-3 days'],
+                ['Available', `${selected.qty} units`],
+                ['Rating', `${selected.rating}/5 (${selected.reviews} reviews)`]
               ].map(([k, v]) => (
                 <div key={k} style={{ background: '#f8fafc', padding: '0.45rem 0.75rem', borderRadius: '0.5rem', fontSize: '0.8rem', color: '#475569' }}>
                   <span style={{ fontWeight: 600 }}>{k}:</span> {v}
@@ -196,7 +201,7 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
             {/* Transparent Cost Breakdown */}
             <div style={{ background: '#f0fdf4', borderRadius: '0.75rem', padding: '1rem', marginBottom: '1.25rem', border: '1px solid #bbf7d0' }}>
               <h4 style={{ fontWeight: 800, marginBottom: '0.75rem', color: '#065f46', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                💚 Transparent Cost Breakdown (Per Unit)
+                Transparent Cost Breakdown (Per Unit)
               </h4>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem', fontSize: '0.88rem', color: '#334155' }}>
                 <span>Farmer Cut (85% Direct)</span>
@@ -235,13 +240,13 @@ const Browse = ({ products, addToCart, wishlist, toggleWishlist, currentUser, on
                 onClick={() => handleAdd(selected, qty)}
                 style={{ flex: 1, background: '#f0fdf4', color: '#10b981', border: '2px solid #10b981', padding: '0.75rem', borderRadius: '0.65rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: '0.95rem' }}
               >
-                🛒 Add to Cart
+                <ShoppingCart size={16} style={{marginRight: '6px', verticalAlign: 'middle'}} /> Add to Cart
               </button>
               <button
                 onClick={() => handleBuyNow(selected, qty)}
                 style={{ flex: 1, background: '#10b981', color: 'white', border: 'none', padding: '0.75rem', borderRadius: '0.65rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: '0.95rem' }}
               >
-                ⚡ Buy Now
+                <Zap size={16} style={{marginRight: '6px', verticalAlign: 'middle'}} /> Buy Now
               </button>
             </div>
           </div>
@@ -277,7 +282,7 @@ const Cart = ({ cart, updateCartQty, removeFromCart, createOrder, currentUser, o
   if (placedOrder) {
     return (
       <div style={{ textAlign: 'center', padding: '3rem 1rem', maxWidth: '540px', margin: '0 auto' }}>
-        <div style={{ fontSize: '4.5rem', marginBottom: '0.5rem' }}>✅</div>
+        <div style={{ marginBottom: '0.5rem' }}><CheckCircle2 size={64} color="#10b981" /></div>
         <h2 style={{ fontSize: '1.8rem', color: '#0f172a', marginBottom: '0.5rem' }}>Order Confirmed!</h2>
         <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>
           Your order <strong>{placedOrder.id}</strong> of <strong>₹{placedOrder.price.toLocaleString('en-IN')}</strong> has been received by the farm.
@@ -318,7 +323,7 @@ const Cart = ({ cart, updateCartQty, removeFromCart, createOrder, currentUser, o
 
       {cart.length === 0 ? (
         <div style={{ ...card, textAlign: 'center', color: '#94a3b8', padding: '3.5rem' }}>
-          <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>🛒</div>
+          <div style={{ marginBottom: '0.5rem' }}><ShoppingCart size={48} color="#94a3b8" /></div>
           <h3 style={{ color: '#0f172a', marginBottom: '0.5rem' }}>Your farm cart is empty</h3>
           <p style={{ color: '#64748b' }}>Browse our direct farm harvest and support local producers.</p>
         </div>
@@ -327,7 +332,9 @@ const Cart = ({ cart, updateCartQty, removeFromCart, createOrder, currentUser, o
           <div>
             {cart.map(p => (
               <div key={p.id} style={{ ...card, display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1rem' }}>
-                <div style={{ fontSize: '3rem' }}>{p.image || '🌿'}</div>
+                <div style={{ width: '80px', height: '80px', borderRadius: '0.75rem', overflow: 'hidden', flexShrink: 0 }}>
+                  <img src={p.image} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
                 <div style={{ flex: 1 }}>
                   <h3 style={{ fontWeight: 700, color: '#0f172a' }}>{p.name}</h3>
                   <p style={{ fontSize: '0.82rem', color: '#64748b' }}>by {p.farmer || p.farm} · {p.location}</p>
@@ -402,7 +409,7 @@ const Cart = ({ cart, updateCartQty, removeFromCart, createOrder, currentUser, o
               onClick={handleCheckout}
               style={{ width: '100%', background: '#10b981', color: 'white', border: 'none', padding: '0.85rem', borderRadius: '0.65rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 800, fontSize: '1rem', marginTop: '1.25rem', boxShadow: '0 4px 14px rgba(16,185,129,0.35)' }}
             >
-              ⚡ Place Order (₹{grandTotal.toLocaleString('en-IN')})
+              Place Order (₹{grandTotal.toLocaleString('en-IN')})
             </button>
           </div>
         </div>
@@ -420,7 +427,7 @@ const Wishlist = ({ wishlist, toggleWishlist, addToCart }) => {
 
   return (
     <div>
-      <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: '#0f172a' }}>❤️ My Wishlist</h2>
+      <h2 style={{ fontSize: '1.75rem', marginBottom: '1.5rem', color: '#0f172a' }}>My Wishlist</h2>
       {wishlist.length === 0 ? (
         <div style={{ ...card, textAlign: 'center', color: '#94a3b8', padding: '3rem' }}>
           Your wishlist is empty. Click the heart icon on any harvest produce to save it!
@@ -429,7 +436,9 @@ const Wishlist = ({ wishlist, toggleWishlist, addToCart }) => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1.25rem' }}>
           {wishlist.map(p => (
             <div key={p.id} style={{ ...card, marginBottom: 0, textAlign: 'center' }}>
-              <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>{p.image || '🌿'}</div>
+              <div style={{ width: '100%', height: '140px', borderRadius: '0.75rem', overflow: 'hidden', marginBottom: '1rem' }}>
+                <img src={p.image} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
               <h3 style={{ fontWeight: 700, color: '#0f172a', fontSize: '0.95rem' }}>{p.name}</h3>
               <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '0.75rem' }}>by {p.farmer}</p>
               <span style={{ fontWeight: 800, color: '#10b981', display: 'block', marginBottom: '0.75rem', fontSize: '1.1rem' }}>
@@ -440,7 +449,7 @@ const Wishlist = ({ wishlist, toggleWishlist, addToCart }) => {
                   Move to Cart
                 </button>
                 <button onClick={() => toggleWishlist(p)} style={{ background: '#fef2f2', color: '#ef4444', border: 'none', padding: '0.5rem 0.75rem', borderRadius: '0.4rem', cursor: 'pointer', fontFamily: 'inherit' }}>
-                  🗑️
+                  <Trash2 size={16} />
                 </button>
               </div>
             </div>
@@ -509,7 +518,7 @@ const MyOrders = ({ orders, onRateOrder, onReorder }) => {
                   onClick={() => onRateOrder(o)}
                   style={{ background: '#fef3c7', border: '1px solid #fde68a', color: '#92400e', padding: '0.45rem 1rem', borderRadius: '0.5rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 700, fontSize: '0.85rem' }}
                 >
-                  ⭐ Rate Order
+                  Rate Order
                 </button>
               )}
               <button
@@ -600,10 +609,10 @@ const Ratings = ({ reviews, onAddReview, prefillOrder }) => {
 
       {/* Review Submission Form */}
       <div style={{ ...card, background: 'linear-gradient(135deg,#fffbeb,#fef3c7)', marginBottom: '1.5rem' }}>
-        <h3 style={{ marginBottom: '0.5rem', color: '#92400e' }}>⭐ Leave a Review for Your Harvest Order</h3>
+        <h3 style={{ marginBottom: '0.5rem', color: '#92400e' }}>Leave a Review for Your Harvest Order</h3>
         {submittedToast && (
           <div style={{ background: '#d1fae5', color: '#065f46', padding: '0.65rem 1rem', borderRadius: '0.5rem', marginBottom: '0.75rem', fontWeight: 700 }}>
-            ✅ Review submitted successfully!
+            Review submitted successfully!
           </div>
         )}
         <form onSubmit={handleSubmit}>
@@ -650,7 +659,7 @@ const Ratings = ({ reviews, onAddReview, prefillOrder }) => {
       <h3 style={{ marginBottom: '1rem', color: '#0f172a' }}>Community & Customer Feedback</h3>
       {reviews.map(r => (
         <div key={r.id} style={{ ...card, display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-          <div style={{ fontSize: '2.5rem' }}>📝</div>
+          <div style={{ display: 'flex', alignItems: 'center' }}><MessageSquare size={32} color="#94a3b8" /></div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
               <h4 style={{ fontWeight: 800, color: '#0f172a' }}>{r.product}</h4>
@@ -669,11 +678,11 @@ const Ratings = ({ reviews, onAddReview, prefillOrder }) => {
 /* ── 7. NOTIFICATIONS ── */
 const ConsumerNotifs = () => {
   const notifs = [
-    { icon: '🛒', title: 'Farm Order Accepted', msg: 'Ravi Sharma from BeeHappy Farms accepted your Raw Organic Honey order!', time: '15 min ago', type: 'order', unread: true },
-    { icon: '🚚', title: 'Out for Delivery', msg: 'SpeedShip Logistics has picked up your Mahabaleshwar Strawberries.', time: '2 hr ago', type: 'delivery', unread: true },
-    { icon: '💰', title: 'Farmer Direct Discount', msg: 'Alphonso Mango price dropped by ₹50/dozen this week.', time: '4 hr ago', type: 'price', unread: true },
-    { icon: '✅', title: 'Order Delivered', msg: 'KD-8490 Strawberries was delivered to your address.', time: 'Yesterday', type: 'order', unread: false },
-    { icon: '❤️', title: 'Wishlist Item Harvested', msg: 'Fresh Baby Spinach is freshly harvested and back in stock!', time: '2 days ago', type: 'wish', unread: false },
+    { icon: <ShoppingCart size={24} color='#10b981' />, title: 'Farm Order Accepted', msg: 'Ravi Sharma from BeeHappy Farms accepted your Raw Organic Honey order!', time: '15 min ago', type: 'order', unread: true },
+    { icon: <Package size={24} color='#3b82f6' />, title: 'Out for Delivery', msg: 'SpeedShip Logistics has picked up your Mahabaleshwar Strawberries.', time: '2 hr ago', type: 'delivery', unread: true },
+    { icon: <Zap size={24} color='#f59e0b' />, title: 'Farmer Direct Discount', msg: 'Alphonso Mango price dropped by ₹50/dozen this week.', time: '4 hr ago', type: 'price', unread: true },
+    { icon: <CheckCircle2 size={24} color='#10b981' />, title: 'Order Delivered', msg: 'KD-8490 Strawberries was delivered to your address.', time: 'Yesterday', type: 'order', unread: false },
+    { icon: <Heart size={24} color='#ec4899' fill='#ec4899' />, title: 'Wishlist Item Harvested', msg: 'Fresh Baby Spinach is freshly harvested and back in stock!', time: '2 days ago', type: 'wish', unread: false },
   ];
   const colors = { order: '#10b981', delivery: '#3b82f6', price: '#f59e0b', wish: '#ec4899' };
 
@@ -724,7 +733,9 @@ const ConsumerProfile = ({ currentUser, onUpdateProfile, onLogout, wishlistCount
         {/* Left summary */}
         <div style={card}>
           <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <div style={{ fontSize: '5rem' }}>👩</div>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 1rem' }}>
+              <img src={currentUser.avatar} alt="avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
             <h3 style={{ fontWeight: 800, fontSize: '1.25rem', color: '#0f172a' }}>
               {form.name || 'Priya Sharma'}
             </h3>
@@ -732,12 +743,12 @@ const ConsumerProfile = ({ currentUser, onUpdateProfile, onLogout, wishlistCount
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {[
-              ['🛒 Total Farm Orders', String(ordersCount)],
-              ['❤️ Saved in Wishlist', String(wishlistCount)],
-              ['📍 Delivery Address', form.address || 'Pune, Maharashtra'],
-              ['📞 Mobile', form.phone || '9876543210'],
-              ['📅 Member Since', currentUser.joined || 'Mar 2025'],
-              ['🌱 Buyer Tier', 'Direct Farm Supporter'],
+              ['Total Farm Orders', String(ordersCount)],
+              ['Saved in Wishlist', String(wishlistCount)],
+              ['Delivery Address', form.address || 'Pune, Maharashtra'],
+              ['Mobile', form.phone || '9876543210'],
+              ['Member Since', currentUser.joined || 'Mar 2025'],
+              ['Buyer Tier', 'Direct Farm Supporter'],
             ].map(([k, v]) => (
               <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.65rem', background: '#f8fafc', borderRadius: '0.5rem' }}>
                 <span style={{ fontSize: '0.85rem', color: '#64748b' }}>{k}</span>
@@ -753,7 +764,7 @@ const ConsumerProfile = ({ currentUser, onUpdateProfile, onLogout, wishlistCount
             <h3 style={{ marginBottom: '1rem', color: '#0f172a' }}>Edit Details</h3>
             {saved && (
               <div style={{ background: '#d1fae5', color: '#065f46', padding: '0.65rem 0.85rem', borderRadius: '0.5rem', marginBottom: '1rem', fontWeight: 700, fontSize: '0.88rem' }}>
-                ✅ Profile saved successfully!
+                Profile saved successfully!
               </div>
             )}
             {[
