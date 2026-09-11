@@ -1,5 +1,5 @@
 import React from 'react';
-import { DollarSign, Package, TrendingUp, AlertCircle } from 'lucide-react';
+import { DollarSign, Package, TrendingUp } from 'lucide-react';
 
 const ProducerDashboard = () => {
   return (

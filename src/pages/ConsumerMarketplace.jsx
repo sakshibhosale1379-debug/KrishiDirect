@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, ShoppingBag, Info } from 'lucide-react';
+import { Sparkles, ShoppingBag } from 'lucide-react';
 
 const products = [
   { id: 1, name: 'Organic Honey', producer: 'BeeHappy Farms', price: 12.50, image: 'https://images.unsplash.com/photo-1587049352847-4d4b1f6d39d9?w=500&q=80', recommended: true },

@@ -16,14 +16,14 @@ const LandingPage = () => {
           <Link to="/marketplace" className="btn btn-primary">
             Explore Marketplace <ArrowRight size={20} />
           </Link>
-          <Link to="/dashboard" className="btn btn-outline">
-            Producer Portal
+          <Link to="/farmer-dashboard" className="btn btn-outline">
+            Farmer Portal
           </Link>
         </div>
       </section>
 
       <section className="mt-8 mb-8" style={{ padding: '4rem 0' }}>
-        <h2 className="text-center text-dark" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>Why NexusMarket?</h2>
+        <h2 className="text-center text-dark" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>Why KrishiDirect?</h2>
         <div className="grid grid-cols-3 gap-8">
           <div className="glass-card flex flex-col items-center text-center">
             <div style={{ background: 'var(--light)', padding: '1rem', borderRadius: '50%', marginBottom: '1.5rem' }}>

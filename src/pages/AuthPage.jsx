@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Truck, Leaf, CheckCircle, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { useData } from '../context/DataContext';
 
 const ROLES = [
   { key: 'consumer', label: 'Consumer', icon: <User size={16} />, color: '#10b981' },
-  { key: 'producer', label: 'Producer', icon: <Leaf size={16} />, color: '#3b82f6' },
+  { key: 'producer', label: 'Producer / Farmer', icon: <Leaf size={16} />, color: '#3b82f6' },
   { key: 'logistics', label: 'Logistics', icon: <Truck size={16} />, color: '#f59e0b' },
 ];
 
 const AuthPage = () => {
   const navigate = useNavigate();
+  const { login } = useData();
   const [mode, setMode] = useState('signup'); // 'signup' | 'login'
   const [role, setRole] = useState('consumer');
   const [showPassword, setShowPassword] = useState(false);
@@ -41,13 +43,13 @@ const AuthPage = () => {
       setErrors(validationErrors);
       return;
     }
-    // Persist user info so dashboards can read it
-    localStorage.setItem('nexus_user', JSON.stringify({
-      name: form.name,
-      email: form.email,
+    // Persist user info via DataContext so all dashboards reflect immediately
+    login({
+      name: form.name.trim(),
+      email: form.email.trim(),
       role,
-      joined: new Date().toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }),
-    }));
+    });
+
     // Redirect to role-specific dashboard
     if (role === 'producer') {
       navigate('/farmer-dashboard');
@@ -116,10 +118,10 @@ const AuthPage = () => {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
           <h2 style={{ fontSize: '2rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>
-            {mode === 'signup' ? 'Join NexusMarket' : 'Welcome Back'}
+            {mode === 'signup' ? 'Join KrishiDirect' : 'Welcome Back'}
           </h2>
           <p style={{ color: 'var(--gray-600)', fontSize: '0.95rem' }}>
-            {mode === 'signup' ? 'Experience direct, transparent trade.' : 'Log in to your account.'}
+            {mode === 'signup' ? 'Experience direct, transparent farm-to-fork trade.' : 'Log in to your account.'}
           </p>
         </div>
 
